@@ -24,6 +24,17 @@ class TestAccessNestedMap(unittest.TestCase):
                                expect: Union[Dict, int]) -> None:
         self.assertEqual(access_nested_map(nest_map, path), expect)
 
+    @parameterized.expand([
+        ({}, ('a'), KeyError),
+        ({'a': 1}, ('a', 'b'), KeyError)
+    ])
+    def test_access_nested_map_exception(self,
+                                         nest_map: Dict, path: Tuple[str],
+                                         expected: Exception):
+        """testing the exceptions raised by the utils function"""
+        with self.assertRaises(expected):
+            access_nested_map(nest_map, path)
+
 
 if __name__ == "__main__":
     unittest.main()
