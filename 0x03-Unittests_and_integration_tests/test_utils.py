@@ -54,12 +54,14 @@ class TestMemoize(unittest.TestCase):
     def test_memoize(self):
         """declaring the test classes"""
         class TestClass:
-
+            """the test class to mimic the callable"""
             def a_method(self):
+                """returnin the value in cache"""
                 return 42
 
             @memoize
             def a_property(self):
+                """calling the cache function"""
                 return self.a_method()
 
         test_subject = TestClass()
