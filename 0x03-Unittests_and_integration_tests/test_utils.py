@@ -22,6 +22,7 @@ class TestAccessNestedMap(unittest.TestCase):
                                nest_map: Dict,
                                path: Tuple[str],
                                expect: Union[Dict, int]) -> None:
+        """testing the function for exceptions incase the keys dont match"""
         self.assertEqual(access_nested_map(nest_map, path), expect)
 
     @parameterized.expand([
@@ -43,6 +44,7 @@ class TestGetJson(unittest.TestCase):
         ("http://holberton.io", {"payload": False})
     ])
     def test_get_json(self, url: str, payload: Dict) -> None:
+        """testing the get_json an padding a patch object"""
         attrs = {'json.return_value': payload}
         with patch("requests.get", return_value=Mock(**attrs)) as req_get:
             self.assertEqual(get_json(url), payload)
